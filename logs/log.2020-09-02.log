@@ -1,0 +1,3 @@
+[2020-09-02 00:15:56.237] [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+[2020-09-02 00:15:56.239] [SpringContextShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource : {dataSource-1} closing ...
+[2020-09-02 00:15:56.241] [SpringContextShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource : {dataSource-1} closed

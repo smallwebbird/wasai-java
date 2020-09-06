@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.wasai.mapper.UserMapper">
+    <select id="getUsers" resultType="com.example.wasai.pojo.user.User">
+        select * from user
+    </select>
+
+    <insert id="insert" parameterType="com.example.wasai.pojo.user.User">
+        insert into user (username, password) values (#{username}, #{password});
+    </insert>
+
+    <select id="getUserByName" resultType="com.example.wasai.pojo.user.User" parameterType="java.lang.String">
+        select * from user where username=#{username}
+    </select>
+
+    <resultMap id="UserRoleMap" type="com.example.wasai.pojo.user.UserRole">
+        <id property="id" column="id"/>
+        <result property="username" column="username" />
+        <result property="uid" column="uid" />
+        <collection property="userAuthority" ofType="com.example.wasai.pojo.user.UserAuthority">
+            <id property="id" column="id"/>
+            <result property="authorities" column="authorities" />
+        </collection>
+    </resultMap>
+
+    <select id="getUserRole" resultMap="UserRoleMap">
+        select *
+        from role as r, authority a where r.uid=#{id} and r.aid=a.id;
+    </select>
+
+    <select id="getUserById" parameterType="int" resultType="com.example.wasai.pojo.user.User">
+        select * from user where id=#{id}
+    </select>
+</mapper>
